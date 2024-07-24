@@ -1,4 +1,4 @@
-from micrograd.engine import Value
+from crudgrad.engine import Value
 
 # implementing a test based on Karpathys exercises
 

@@ -41,6 +41,15 @@ class Value:
   def __radd__(self, other):
     return self + other
 
+  def log(self):
+    out = Value(math.log(self.data), (self, ), 'log')
+
+    def _backward():
+      self.grad += (1 / self.data) * out.grad
+    out._backward = _backward
+
+    return out
+
   def __pow__(self, other):
     assert isinstance(other, (int, float)) # can only support int/floats
     out = Value(self.data**other, (self, ), f'**{other}')
